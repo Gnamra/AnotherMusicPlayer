@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>AnotherMusicPlayer</id>
+    <version>1.0.0</version>
+    <authors>AnotherMusicPlayer</authors>
+    <owners>AnotherMusicPlayer</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp2.2">
+        <dependency id="PluginContracts" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="NAudio" version="1.9.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\bin\Debug\netcoreapp2.2\AnotherMusicPlayer.runtimeconfig.json" target="lib\netcoreapp2.2\AnotherMusicPlayer.runtimeconfig.json" />
+    <file src="C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\bin\Debug\netcoreapp2.2\AnotherMusicPlayer.dll" target="lib\netcoreapp2.2\AnotherMusicPlayer.dll" />
+  </files>
+</package>
