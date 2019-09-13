@@ -5,59 +5,61 @@ using System.Reflection;
 using PluginContracts;
 using NAudio.Wave;
 
+
 namespace AnotherMusicplayer
 {
-
-    class Program
+    class AnotherMusicPlayer
     {
-        static void Main(string[] args)
+        public AnotherMusicPlayer()
         {
 
-            #region Put this into plugin loader class
-            string[] decoderFileNames = null;
-            if (Directory.Exists(@"C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\Decoders"))
+        }
+    }
+
+    class DecoderLoader
+    {
+        private string pluginFolderPath { get; }
+        private ICollection<Assembly> assemblies { get; }
+        private ICollection<Type> pluginTypes { get; }
+        public List<IDecoder> decoders { get; }
+        public DecoderLoader(string PathToPluginFolder)
+        {
+            pluginFolderPath = PathToPluginFolder;
+            assemblies = LoadPluginAssemblies();
+            pluginTypes = GetPluginTypes();
+            decoders = GetDecoders();
+        }
+
+        private List<IDecoder> GetDecoders()
+        {
+            List<IDecoder> decs = new List<IDecoder>(pluginTypes.Count);
+            foreach (Type type in pluginTypes)
             {
-                decoderFileNames = Directory.GetFiles(@"C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\Decoders", "*.dll");
+                IDecoder decoder = (IDecoder)Activator.CreateInstance(type, "Timelineの東.wav");
+                decs.Add(decoder);
+
             }
-            else
-                Environment.Exit(0);
-
-            ICollection<Assembly> assemblies = new List<Assembly>(decoderFileNames.Length);
-            foreach (string decoder in decoderFileNames)
-            {
-                try
-                {
-                    Console.WriteLine("Found: " + decoder);
-                    AssemblyName an = AssemblyName.GetAssemblyName(decoder);
-
-                    Console.WriteLine("Assembly name: " + an.Name);
-                    Assembly assembly = Assembly.LoadFrom(@"C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\Decoders\" + an.Name + ".dll");
-
-                    assemblies.Add(assembly);
-                }
-                catch(Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-
+            return decs;
+        }
+        private ICollection<Type> GetPluginTypes()
+        {
             Type pluginType = typeof(IDecoder);
             ICollection<Type> pluginTypes = new List<Type>();
 
-            foreach(Assembly assembly in assemblies)
+            foreach (Assembly assembly in assemblies)
             {
                 if (assembly != null)
                 {
                     Type[] types = assembly.GetTypes();
-                    foreach(Type type in types)
+                    foreach (Type type in types)
                     {
-                        if(type.IsInterface || type.IsAbstract)
+                        if (type.IsInterface || type.IsAbstract)
                         {
                             continue;
                         }
                         else
                         {
-                            if(type.GetInterface(pluginType.FullName) != null)
+                            if (type.GetInterface(pluginType.FullName) != null)
                             {
                                 pluginTypes.Add(type);
                             }
@@ -65,16 +67,51 @@ namespace AnotherMusicplayer
                     }
                 }
             }
-
-            List<IDecoder> decoders = new List<IDecoder>(pluginTypes.Count);
-            foreach(Type type in pluginTypes)
+            return pluginTypes;
+        }
+        private ICollection<Assembly> LoadPluginAssemblies()
+        {
+            try
             {
-                IDecoder decoder = (IDecoder)Activator.CreateInstance(type, "Timelineの東.wav");
-                decoders.Add(decoder);
-                Console.WriteLine(decoder.GetName());
+                string[] decoderFileNames = Directory.GetFiles(pluginFolderPath, "*.dll");
+                ICollection<Assembly> assemblies = new List<Assembly>(decoderFileNames.Length);
 
+                foreach(string decoder in decoderFileNames)
+                {
+                    Assembly assembly = Assembly.LoadFrom(pluginFolderPath + AssemblyName.GetAssemblyName(decoder).Name + ".dll" );
+                    assemblies.Add(assembly);
+                }
+                return assemblies;
             }
-            #endregion
+            catch(Exception e)
+            {
+                Console.WriteLine(" =========== Failed to load plugin assemblies =========== ");
+                Console.WriteLine(e.Message);
+                throw e;
+            }
+        }
+    }
+
+    
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.CursorVisible = false;
+
+            DecoderLoader pl = null;
+            try
+            {
+                pl = args.Length > 0 ?
+                new DecoderLoader(args[0]) : throw new Exception("No arguments provided");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Environment.Exit(1);
+            }
+
 
             var waveOut = new WaveOutEvent
             {
@@ -82,18 +119,29 @@ namespace AnotherMusicplayer
             };
 
             
-            waveOut.Init(decoders[0].GetWaveStream());
+            waveOut.Init(pl.decoders[0].GetWaveStream());
             waveOut.Play();
 
-            Console.WriteLine("Playing song!");
+            Console.WriteLine("Playing Timelineの東");
 
+            int printTimeX = Console.CursorTop;
             string input = "";
             while (true)
             {
-                if(Console.KeyAvailable)
+                Console.CursorTop = printTimeX;
+                Console.Write(new string(' ', 10));
+                Console.CursorLeft = 0;
+                var time = pl.decoders[0].GetWaveStream().CurrentTime;
+                Console.Write(time.ToString(@"m\:ss"));
+                if (Console.KeyAvailable)
                 {
+                    Console.CursorTop = printTimeX + 1;
+                    Console.CursorLeft = 0;
+                    int positionY = Console.CursorTop;
                     input = Console.ReadLine();
-                    Console.WriteLine($"\ninput: {input}");
+                    Console.CursorTop = positionY;
+                    Console.Write(new string(' ', Console.WindowWidth));
+                    Console.CursorLeft = 0;
                     if (input.ToLower().Equals("pause"))
                     {
                         waveOut.Pause();
@@ -126,14 +174,20 @@ namespace AnotherMusicplayer
                         }
                     }
                 }
-
                 if(waveOut.PlaybackState == PlaybackState.Stopped)
                 {
                     Console.WriteLine("Restart? (Y / N)");
+                    int positionY = Console.CursorTop - 1;
                     string answer = Console.ReadLine();
-                    if(answer.ToLower().Equals("y"))
+                    Console.CursorTop = positionY;
+
+                    Console.WriteLine(new string(' ', Console.WindowWidth));
+                    Console.WriteLine(new string(' ', Console.WindowWidth));
+                    Console.CursorTop = positionY;
+                    Console.CursorLeft = 0;
+                    if (answer.ToLower().Equals("y"))
                     {
-                        decoders[0].GetWaveStream().Position = 0;
+                        pl.decoders[0].GetWaveStream().Position = 0;
                         waveOut.Play();
                     }
                     else
@@ -142,11 +196,6 @@ namespace AnotherMusicplayer
                     }
                 }
             }
-        }
-
-        public void ParseInput(string input)
-        {
-
         }
     }
 }

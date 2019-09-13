@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AnotherMusicPlayer": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\AnotherMusicplayer\\bin\\Debug\\netcoreapp2.2\\decoders\\"
+    }
+  }
+}
