@@ -7,6 +7,7 @@ namespace PluginContracts
     {
         string GetName();
         int Read(byte[] buffer, int offset, int count);
+        void Seek(int time);
         WaveStream GetWaveStream();
     }
 }

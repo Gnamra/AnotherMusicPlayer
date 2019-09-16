@@ -12,7 +12,6 @@ namespace AnotherMusicPlayer
         private string PluginFolderPath { get; }
         private ICollection<Assembly> Assemblies { get; }
         private List<Type> PluginTypes { get; }
-        private List<IDecoder> Decoders { get; }
         public DecoderLoader(string PathToPluginFolder)
         {
             PluginFolderPath = PathToPluginFolder;

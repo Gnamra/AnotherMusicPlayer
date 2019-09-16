@@ -1,0 +1,9 @@
+C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\PluginContracts\bin\Release\netcoreapp2.2\PluginContracts.deps.json
+C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\PluginContracts\bin\Release\netcoreapp2.2\PluginContracts.dll
+C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\PluginContracts\bin\Release\netcoreapp2.2\PluginContracts.pdb
+C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\PluginContracts\obj\Release\netcoreapp2.2\PluginContracts.csprojAssemblyReference.cache
+C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\PluginContracts\obj\Release\netcoreapp2.2\PluginContracts.csproj.CoreCompileInputs.cache
+C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\PluginContracts\obj\Release\netcoreapp2.2\PluginContracts.AssemblyInfoInputs.cache
+C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\PluginContracts\obj\Release\netcoreapp2.2\PluginContracts.AssemblyInfo.cs
+C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\PluginContracts\obj\Release\netcoreapp2.2\PluginContracts.dll
+C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\PluginContracts\obj\Release\netcoreapp2.2\PluginContracts.pdb

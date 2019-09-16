@@ -103,7 +103,6 @@ namespace WaveDecoder
             if (CurrentChunkId.Equals("RIFF"))
             {
                 CurrentChunkSize = AudioFileReader.ReadInt32();
-                var type = new string(AudioFileReader.ReadChars(4));
             }
             else
             {
@@ -189,6 +188,11 @@ namespace WaveDecoder
         public WaveStream GetWaveStream()
         {
             return this;
+        }
+
+        public void Seek(int time)
+        {
+            Position = time * AudioFile.Format.ByteRate;
         }
     }
 }

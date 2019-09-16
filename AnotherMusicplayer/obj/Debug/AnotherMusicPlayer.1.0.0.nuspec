@@ -15,7 +15,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Users\Magnar\Source\Repos\AnotherMusicPlayer\AnotherMusicplayer\bin\Debug\netcoreapp2.2\AnotherMusicPlayer.runtimeconfig.json" target="lib\netcoreapp2.2\AnotherMusicPlayer.runtimeconfig.json" />
-    <file src="C:\Users\Magnar\Source\Repos\AnotherMusicPlayer\AnotherMusicplayer\bin\Debug\netcoreapp2.2\AnotherMusicPlayer.dll" target="lib\netcoreapp2.2\AnotherMusicPlayer.dll" />
+    <file src="C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\bin\Debug\netcoreapp2.2\AnotherMusicPlayer.runtimeconfig.json" target="lib\netcoreapp2.2\AnotherMusicPlayer.runtimeconfig.json" />
+    <file src="C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\bin\Debug\netcoreapp2.2\AnotherMusicPlayer.dll" target="lib\netcoreapp2.2\AnotherMusicPlayer.dll" />
   </files>
 </package>

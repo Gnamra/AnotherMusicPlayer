@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using NAudio.Wave;
 using PluginContracts;
 
@@ -9,14 +10,15 @@ namespace AnotherMusicPlayer
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-
+            Console.InputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.UTF8;
             AnotherMusicPlayer amp = new AnotherMusicPlayer(args[0]);
 
             Console.WriteLine("Playing Timelineの東");
             Playback song = amp.LoadSong("Timelineの東.wav");
             song.Play();
             int printTimeX = Console.CursorTop;
-            string input = "";
+            string input;
 
             while (true)
             {
@@ -83,7 +85,7 @@ namespace AnotherMusicPlayer
                             string filePath = input.Substring(5, input.Length - 5);
                             song.Stop();
                             song = amp.LoadSong(filePath);
-
+                            song.Play();
                         }
                         catch(Exception e)
                         {
