@@ -1,37 +1,43 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using NAudio.Wave;
 using PluginContracts;
 
 
 namespace AnotherMusicPlayer
 {
-    class DecoderLoader
+    public class DecoderLoader
     {
+
         private string PluginFolderPath { get; }
         private ICollection<Assembly> Assemblies { get; }
         private List<Type> PluginTypes { get; }
+        
         public DecoderLoader(string PathToPluginFolder)
         {
             PluginFolderPath = PathToPluginFolder;
             Assemblies = LoadPluginAssemblies();
             PluginTypes = GetPluginTypes();
-           // Decoders = GetDecoders();
         }
 
-        public List<IDecoder> GetDecoders()
+        public IDecoder GetDecoder(string file)
         {
-            List<IDecoder> decs = new List<IDecoder>(PluginTypes.Count);
-            foreach (Type type in PluginTypes)
+            string filetype = file?.Substring(file.Length - 3, 3).ToUpperInvariant();
+            Console.WriteLine("Type: " + filetype);
+            switch(filetype)
             {
-                Console.WriteLine(type.Name);
-                IDecoder decoder = (IDecoder)Activator.CreateInstance(type, "Timelineの東.wav");
-                decs.Add(decoder);
-
+                case "WAV":
+                    return CreateWaveDecoder(file);
+                case "MP3":
+                    Mp3FileReader fr = new Mp3FileReader(file);
+                    return (IDecoder)fr;
+                default:
+                    throw new Exception("Decoder not found!");
             }
-            return decs;
         }
+
         private List<Type> GetPluginTypes()
         {
             Type pluginType = typeof(IDecoder);
@@ -78,11 +84,10 @@ namespace AnotherMusicPlayer
             {
                 Console.WriteLine(" =========== Failed to load plugin assemblies =========== ");
                 Console.WriteLine(e.Message);
-                throw e;
+                throw;
             }
         }
-
-        public IDecoder CreateWaveDecoder(string file)
+        private IDecoder CreateWaveDecoder(string file)
         {
             Type waveDecoderType = PluginTypes.Find((x) => x.Name.Equals("WaveDecoder")) ??
                 throw new Exception($"Unable to load {file}. Decoder unavailable.");

@@ -8,14 +8,21 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Package Description</description>
     <dependencies>
-      <group targetFramework=".NETCoreApp2.2">
+      <group targetFramework=".NETCoreApp3.1">
         <dependency id="PluginContracts" version="1.0.0" exclude="Build,Analyzers" />
-        <dependency id="NAudio" version="1.9.0" exclude="Build,Analyzers" />
+        <dependency id="Eto.Forms" version="2.5.0-rc.5" exclude="Build,Analyzers" />
+        <dependency id="Eto.Platform.Wpf" version="2.5.0-rc.5" exclude="Build,Analyzers" />
+        <dependency id="NAudio" version="1.10.0" exclude="Build,Analyzers" />
       </group>
     </dependencies>
+    <frameworkReferences>
+      <group targetFramework=".NETCoreApp3.1">
+        <frameworkReference name="Microsoft.WindowsDesktop.App" />
+      </group>
+    </frameworkReferences>
   </metadata>
   <files>
-    <file src="C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\bin\Debug\netcoreapp2.2\AnotherMusicPlayer.runtimeconfig.json" target="lib\netcoreapp2.2\AnotherMusicPlayer.runtimeconfig.json" />
-    <file src="C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\bin\Debug\netcoreapp2.2\AnotherMusicPlayer.dll" target="lib\netcoreapp2.2\AnotherMusicPlayer.dll" />
+    <file src="C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\bin\Debug\netcoreapp3.1\AnotherMusicPlayer.runtimeconfig.json" target="lib\netcoreapp3.1\AnotherMusicPlayer.runtimeconfig.json" />
+    <file src="C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\bin\Debug\netcoreapp3.1\AnotherMusicPlayer.dll" target="lib\netcoreapp3.1\AnotherMusicPlayer.dll" />
   </files>
 </package>

@@ -1,118 +1,145 @@
-﻿using System;
-using System.Text;
-using NAudio.Wave;
-using PluginContracts;
+﻿using Eto.Drawing;
+using Eto.Forms;
+using System;
 
 namespace AnotherMusicPlayer
 {
+    public class MyCommand : Command
+    {
+        public MyCommand()
+        {
+            MenuText = "C&lick Me, Command";
+            ToolBarText = "Click Me";
+            ToolTip = "This shows a dialog for no reason";
+            //Image = Icon.FromResource ("MyResourceName.ico");
+            //Image = Bitmap.FromResource ("MyResourceName.png");
+            Shortcut = Application.Instance.CommonModifier | Keys.M;  // control+M or cmd+M
+        }
+
+        protected override void OnExecuted(EventArgs e)
+        {
+            base.OnExecuted(e);
+
+            MessageBox.Show(Application.Instance.MainForm, "You clicked me!", "Tutorial 2", MessageBoxButtons.OK);
+        }
+    }
+    public class MyForm : Form
+    {
+        public MyForm()
+        {
+            ClientSize = new Size(600, 400);
+            Title = "Menus and Toolbars";
+
+            // create menu
+            Menu = new MenuBar
+            {
+                Items =
+                {
+                    new ButtonMenuItem
+                    {
+                        Text = "&File",
+                        Items =
+                        { 
+							// you can add commands or menu items
+							new MyCommand(),
+                            new ButtonMenuItem { Text = "Click Me, MenuItem" }
+                        }
+                    }
+                },
+                // quit item (goes in Application menu on OS X, File menu for others)
+                QuitItem = new Command((sender, e) => Application.Instance.Quit())
+                {
+                    MenuText = "Quit",
+                    Shortcut = Application.Instance.CommonModifier | Keys.Q
+                },
+                // about command (goes in Application menu on OS X, Help menu for others)
+                AboutItem = new Command((sender, e) => new Dialog { Content = new Label { Text = "About my app..." }, ClientSize = new Size(200, 200) }.ShowModal(this))
+                {
+                    MenuText = "About my app"
+                }
+            };
+
+            // create toolbar
+            ToolBar = new ToolBar
+            {
+                Items =
+                {
+                    new MyCommand(),
+                    new SeparatorToolItem(),
+                    new ButtonToolItem { Text = "Click Me, ToolItem" }
+                }
+            };
+        }
+    }
+
+
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
+            new Eto.Forms.Application().Run(new MyForm());
             Console.CursorVisible = false;
-            Console.InputEncoding = Encoding.UTF8;
-            Console.OutputEncoding = Encoding.UTF8;
+
             AnotherMusicPlayer amp = new AnotherMusicPlayer(args[0]);
 
             Console.WriteLine("Playing Timelineの東");
-            Playback song = amp.LoadSong("Timelineの東.wav");
-            song.Play();
+            bool songLoaded = amp.LoadSong("Timelineの東.wav");
+            if(!songLoaded)
+            {
+                Console.WriteLine("Unable to load song");
+            }
+            amp.Play(0);
             int printTimeX = Console.CursorTop;
             string input;
 
-            while (true)
+            while (!amp.ExitRequested)
             {
-                Console.CursorTop = printTimeX;
-                Console.Write(new string(' ', 10));
-                Console.CursorLeft = 0;
-                var time = song.Time;
-                Console.Write(time.ToString(@"m\:ss"));
+                amp.DisplaySongInfo();
                 if (Console.KeyAvailable)
                 {
                     Console.CursorTop = printTimeX + 1;
                     Console.CursorLeft = 0;
                     int positionY = Console.CursorTop;
                     input = Console.ReadLine();
+                    input = input.ToUpperInvariant();
                     Console.CursorTop = positionY;
                     Console.Write(new string(' ', Console.WindowWidth));
                     Console.CursorLeft = 0;
-                    if (input.ToLower().Equals("pause"))
+
+                    string[] command = input.Split(" ");
+                    switch (command[0].ToUpperInvariant())
                     {
-                        song.Pause();
-                    }
-                    else if(input.ToLower().Equals("play"))
-                    {
-                        song.Play();
-                    }
-                    else if(input.ToLower().Equals("stop"))
-                    {
-                        song.Stop();
-                    }
-                    else if(input.ToLower().Contains("vol"))
-                    {
-                        try
-                        {
-                            // 4, because "vol " is 4 characters.
-                            string unparsedVolume = input.Substring(4, input.Length - 4);
-                            float volume = float.TryParse(unparsedVolume, out float vol) == true ? vol : throw new Exception("Failed to parse volume");
+                        case "PAUSE":
+                            amp.CurrentSong.Pause();
+                            break;
+                        case "RESUME":
+                            amp.Resume();
+                            break;
+                        case "PLAY":
+                            amp.Play();
+                            break;
+                        case "STOP":
+                            amp.Stop();
+                            break;
+                        case "VOL":
+                            float volume = float.TryParse(command[1], out float vol) == true ? vol : throw new Exception("Failed to parse volume");
                             volume = volume > 100 || volume < 0 ? throw new Exception("Invalid value for volume") : volume;
                             float normalizedVolume = volume / 100;
-                            song.Volume = normalizedVolume;
-                            
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                    }
-                    else if(input.ToLower().Contains("seek"))
-                    {
-                        try
-                        {   // 5, because "seek " is 5 characters.
-                            string seekTime = input.Substring(5, input.Length - 5);
-                            song.Seek(seekTime);
-                        }
-                        catch(Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                    }
-                    else if(input.ToLower().Contains("load"))
-                    {
-                        try
-                        {
-                            // 5, because "load " is 5 characters.
-                            string filePath = input.Substring(5, input.Length - 5);
-                            song.Stop();
-                            song = amp.LoadSong(filePath);
-                            song.Play();
-                        }
-                        catch(Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                    }
-                }
-
-                if(song.State == PlaybackState.Stopped)
-                {
-                    Console.WriteLine("Restart? (Y / N)");
-                    int positionY = Console.CursorTop - 1;
-                    string answer = Console.ReadLine();
-                    Console.CursorTop = positionY;
-
-                    Console.WriteLine(new string(' ', Console.WindowWidth));
-                    Console.WriteLine(new string(' ', Console.WindowWidth));
-                    Console.CursorTop = positionY;
-                    Console.CursorLeft = 0;
-                    if (answer.ToLower().Equals("y"))
-                    {
-                        song.Position = 0;
-                        song.Play();
-                    }
-                    else
-                    {
-                        break;
+                            amp.CurrentSong.Volume = normalizedVolume;
+                            break;
+                        case "SEEK":
+                            amp.CurrentSong.Seek(command[1]);
+                            break;
+                        case "LOAD":
+                            amp.LoadSong(command[1]);
+                            break;
+                        case "NEXT":
+                            amp.NextSong();
+                            break;
+                        case "EXIT":
+                            amp.ExitRequested = true;
+                            break;
                     }
                 }
             }

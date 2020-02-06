@@ -21,14 +21,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.2"
+          "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\magnar.kleppe\\OneDrive - Bouvet Norge AS\\Documents": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.2": {
+          "netcoreapp3.1": {
             "projectReferences": {
               "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj": {
                 "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj"
@@ -43,24 +44,46 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.2": {
+        "netcoreapp3.1": {
           "dependencies": {
-            "Microsoft.NETCore.App": {
+            "Eto.Forms": {
+              "target": "Package",
+              "version": "[2.5.0-rc.5, )"
+            },
+            "Eto.Platform.Wpf": {
+              "target": "Package",
+              "version": "[2.5.0-rc.5, )"
+            },
+            "Microsoft.CodeAnalysis.FxCopAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.2.0, )",
-              "autoReferenced": true
+              "version": "[2.9.8, )"
             },
             "NAudio": {
               "target": "Package",
-              "version": "[1.9.0, )"
+              "version": "[1.10.0, )"
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -85,6 +108,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\magnar.kleppe\\OneDrive - Bouvet Norge AS\\Documents": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -113,10 +137,16 @@
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

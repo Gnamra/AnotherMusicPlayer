@@ -3,7 +3,6 @@
     "AnotherMusicPlayer": {
       "commandName": "Project",
       "commandLineArgs": "Decoders\\",
-      "workingDirectory": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\AnotherMusicPlayer\\bin\\Debug\\netcoreapp2.2\\",
       "nativeDebugging": false
     }
   }
