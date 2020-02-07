@@ -1,74 +1,176 @@
 ﻿using Eto.Drawing;
 using Eto.Forms;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace AnotherMusicPlayer
 {
-    public class MyCommand : Command
+    public class btnPlay : Button
     {
-        public MyCommand()
+        public btnPlay()
         {
-            MenuText = "C&lick Me, Command";
-            ToolBarText = "Click Me";
-            ToolTip = "This shows a dialog for no reason";
-            //Image = Icon.FromResource ("MyResourceName.ico");
-            //Image = Bitmap.FromResource ("MyResourceName.png");
-            Shortcut = Application.Instance.CommonModifier | Keys.M;  // control+M or cmd+M
-        }
-
-        protected override void OnExecuted(EventArgs e)
-        {
-            base.OnExecuted(e);
-
-            MessageBox.Show(Application.Instance.MainForm, "You clicked me!", "Tutorial 2", MessageBoxButtons.OK);
+            Image = new Bitmap(Path.GetFullPath(@"Resources\btnPlay.bmp"));
         }
     }
+
+    public class ControlPanel : Panel
+    {
+        private enum ResizeTargetEnum
+        {
+            Top,
+            Bottom,
+            None
+        }
+        private ResizeTargetEnum ResizeTarget { get; set; }
+        private TableLayout layout;
+        public ControlPanel()
+        {
+            layout = new TableLayout();
+            layout.Spacing = new Size(5, 5);
+            layout.Padding = new Padding(10, 10, 10, 10);
+
+
+            var btnPlay = new btnPlay();
+            
+            var cellBtnPlay = new TableCell(btnPlay);
+            cellBtnPlay.ScaleWidth = true;
+            layout.Rows.Add(new TableRow(
+                cellBtnPlay));
+            Content = layout;
+       //     MouseMove += OnMouseMove;
+        //    MouseUp += OnMouseUp;
+        //    MouseDown += OnMouseDown;
+        }
+        private void OnMouseUp(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("Mouse released!");
+            ResizeTarget = ResizeTargetEnum.None;
+        }
+
+        private void OnMouseDown(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("Mouse clicked!");
+            if (e.Location.Y < 10) ResizeTarget = ResizeTargetEnum.Top;
+            else if (e.Location.Y > Height - 10) ResizeTarget = ResizeTargetEnum.Bottom;
+
+        }
+
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Location.Y <= 10 || e.Location.Y >= ((ControlPanel)sender).Height - 10)
+            {
+                Mouse.SetCursor(new Cursor(CursorType.HorizontalSplit));
+            }
+            if (ResizeTarget == ResizeTargetEnum.Bottom)
+            {
+                Height = e.Location.Y > 50 ? (int)e.Location.Y : 50;
+            }
+            else if(ResizeTarget == ResizeTargetEnum.Top)
+            {
+                var location = Location;
+                location.Y = (int)e.Location.Y;
+                Height -= (int)e.Delta.Height;
+            }
+        }
+    }
+
     public class MyForm : Form
     {
+        Scrollable scrLibrary;
+        Splitter splitter1;
+        Splitter splitter2;
         public MyForm()
         {
             ClientSize = new Size(600, 400);
-            Title = "Menus and Toolbars";
+            Title = "Another Music Player";
 
-            // create menu
-            Menu = new MenuBar
-            {
-                Items =
-                {
-                    new ButtonMenuItem
-                    {
-                        Text = "&File",
-                        Items =
-                        { 
-							// you can add commands or menu items
-							new MyCommand(),
-                            new ButtonMenuItem { Text = "Click Me, MenuItem" }
-                        }
-                    }
-                },
-                // quit item (goes in Application menu on OS X, File menu for others)
-                QuitItem = new Command((sender, e) => Application.Instance.Quit())
-                {
-                    MenuText = "Quit",
-                    Shortcut = Application.Instance.CommonModifier | Keys.Q
-                },
-                // about command (goes in Application menu on OS X, Help menu for others)
-                AboutItem = new Command((sender, e) => new Dialog { Content = new Label { Text = "About my app..." }, ClientSize = new Size(200, 200) }.ShowModal(this))
-                {
-                    MenuText = "About my app"
-                }
-            };
+            var layout = new TableLayout();
+            layout.Spacing = new Size(5, 5);
+            layout.Padding = new Padding(10, 10, 10, 10);
 
-            // create toolbar
-            ToolBar = new ToolBar
-            {
-                Items =
-                {
-                    new MyCommand(),
-                    new SeparatorToolItem(),
-                    new ButtonToolItem { Text = "Click Me, ToolItem" }
-                }
-            };
+            var lbxLibrary = new ListBox();
+            var library = new List<string>();
+            var controlPanel = new ControlPanel();
+            library.Add("Timelineの東.wav");
+            library.Add("Timelineの東2.wav");
+            library.Add("Timelineの東3.wav");
+            library.Add("Timelineの東4.wav");
+            library.Add("Timelineの東5.wav");
+            library.Add("Timelineの東6.wav");
+            library.Add("Timelineの東7.wav");
+            library.Add("Timelineの東8.wav");
+            library.Add("Timelineの東1.wav");
+            library.Add("Timelineの東2.wav");
+            library.Add("Timelineの東3.wav");
+            library.Add("Timelineの東4.wav");
+            library.Add("Timelineの東12.wav");
+            library.Add("Timelineの東3.wav");
+            library.Add("Timelineの東21.wav");
+            library.Add("Timelineの東.w3av");
+            library.Add("Timelineの東.w21av");
+            library.Add("Timelineの東.wa132v");
+            library.Add("Timelineの東2.wav");
+            library.Add("Timelineの東.wav");
+            library.Add("Timelineの2東.wav");
+            library.Add("Timelineの1東.wav");
+            library.Add("Timeline5の東.wav");
+            library.Add("Timelineの東.wav");
+
+            lbxLibrary.DataStore = library;
+            var btn2 = new btnPlay();
+            var btn3 = new btnPlay();
+            splitter1 = new Splitter();
+            splitter2 = new Splitter();
+            scrLibrary = new Scrollable();
+            scrLibrary.Content = lbxLibrary;
+            scrLibrary.Border = BorderType.Line;
+            scrLibrary.MouseWheel += ScrLibrary_MouseWheel;
+            splitter1.Panel1 = scrLibrary;
+            splitter1.Panel1MinimumSize = 50;
+            splitter1.Panel2 = controlPanel;
+            splitter1.Panel2MinimumSize = 50;
+            splitter1.Orientation = Orientation.Vertical;
+            splitter1.SplitterWidth = 10;
+          //  layout.Rows.Add(scrLibrary);
+            layout.Rows.Add(splitter1);
+            //layout.Rows.Add(null);
+
+            splitter2.Panel1 = controlPanel;
+            splitter2.Panel1MinimumSize = 50;
+            splitter2.Panel2 = btn3;
+            splitter2.Panel2MinimumSize = 50;
+            splitter2.Orientation = Orientation.Vertical;
+            splitter2.SplitterWidth = 10;
+          //  layout.Rows.Add(splitter2);
+
+            //var stack = new StackLayout();
+            //stack.Orientation = Orientation.Vertical;
+            //stack.VerticalContentAlignment = VerticalAlignment.Center;
+            //var stackItem1 = new StackLayoutItem(scrLibrary);
+            //var stackItem2 = new StackLayoutItem(controlPanel);
+            //var stackItem3 = new StackLayoutItem(btn2);
+            //stack.Items.Add(stackItem1);
+            //stack.Items.Add(stackItem2);
+            //stack.Items.Add(stackItem3);
+
+            Content = layout;
+           // scrLibrary.UpdateScrollSizes();
+        }
+
+        private void ScrLibrary_MouseWheel(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("Scroll!");
+            int y = scrLibrary.ScrollPosition.Y + (10 * (int)-e.Delta.Height);
+            scrLibrary.ScrollPosition = new Point(scrLibrary.ScrollPosition.X, y);
+        }
+
+        private void ScrLibrary_Scroll(object sender, ScrollEventArgs e)
+        {
+            Console.WriteLine("Scroll!");
+            //scrLibrary.UpdateScrollSizes();
         }
     }
 
@@ -78,7 +180,7 @@ namespace AnotherMusicPlayer
         [STAThread]
         static void Main(string[] args)
         {
-            new Eto.Forms.Application().Run(new MyForm());
+            new Application().Run(new MyForm());
             Console.CursorVisible = false;
 
             AnotherMusicPlayer amp = new AnotherMusicPlayer(args[0]);
