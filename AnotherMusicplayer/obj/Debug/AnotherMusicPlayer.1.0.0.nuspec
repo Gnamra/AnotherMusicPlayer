@@ -22,7 +22,7 @@
     </frameworkReferences>
   </metadata>
   <files>
-    <file src="C:\Users\Magnar\source\repos\AnotherMusicPlayer\AnotherMusicplayer\bin\Debug\netcoreapp3.1\AnotherMusicPlayer.runtimeconfig.json" target="lib\netcoreapp3.1\AnotherMusicPlayer.runtimeconfig.json" />
-    <file src="C:\Users\Magnar\source\repos\AnotherMusicPlayer\AnotherMusicplayer\bin\Debug\netcoreapp3.1\AnotherMusicPlayer.dll" target="lib\netcoreapp3.1\AnotherMusicPlayer.dll" />
+    <file src="C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\bin\Debug\netcoreapp3.1\AnotherMusicPlayer.runtimeconfig.json" target="lib\netcoreapp3.1\AnotherMusicPlayer.runtimeconfig.json" />
+    <file src="C:\Users\magnar.kleppe\source\repos\AnotherMusicplayer\AnotherMusicplayer\bin\Debug\netcoreapp3.1\AnotherMusicPlayer.dll" target="lib\netcoreapp3.1\AnotherMusicPlayer.dll" />
   </files>
 </package>

@@ -24,7 +24,7 @@ namespace FlacDecoder
 
         public void Seek(int time)
         {
-
+            
         }
 
         public override int Read(byte[] buffer, int offset, int count)

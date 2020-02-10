@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj": {}
+    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj": {
+    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj",
+        "projectUniqueName": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj",
         "projectName": "AnotherMusicPlayer",
-        "projectPath": "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj",
-        "packagesPath": "C:\\Users\\Magnar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\AnotherMusicplayer\\obj\\",
+        "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj",
+        "packagesPath": "C:\\Users\\magnar.kleppe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\AnotherMusicplayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Magnar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\magnar.kleppe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,14 +25,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.myget.org/F/eto/api/v3/index.json": {}
+          "C:\\Users\\magnar.kleppe\\OneDrive - Bouvet Norge AS\\Documents": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj": {
-                "projectPath": "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj"
+              "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj": {
+                "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj"
               }
             }
           }
@@ -87,20 +87,20 @@
         }
       }
     },
-    "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj": {
+    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj",
+        "projectUniqueName": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj",
         "projectName": "PluginContracts",
-        "projectPath": "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj",
-        "packagesPath": "C:\\Users\\Magnar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\obj\\",
+        "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj",
+        "packagesPath": "C:\\Users\\magnar.kleppe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Magnar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\magnar.kleppe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -108,8 +108,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.myget.org/F/eto/api/v3/index.json": {}
+          "C:\\Users\\magnar.kleppe\\OneDrive - Bouvet Norge AS\\Documents": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp2.2": {
