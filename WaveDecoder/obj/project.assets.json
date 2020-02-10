@@ -733,23 +733,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\magnar.kleppe\\.nuget\\packages\\": {},
+    "C:\\Users\\Magnar\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\WaveDecoder\\WaveDecoder.csproj",
+      "projectUniqueName": "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\WaveDecoder\\WaveDecoder.csproj",
       "projectName": "WaveDecoder",
-      "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\WaveDecoder\\WaveDecoder.csproj",
-      "packagesPath": "C:\\Users\\magnar.kleppe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\WaveDecoder\\obj\\",
+      "projectPath": "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\WaveDecoder\\WaveDecoder.csproj",
+      "packagesPath": "C:\\Users\\Magnar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\WaveDecoder\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\magnar.kleppe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Magnar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -757,14 +757,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\magnar.kleppe\\OneDrive - Bouvet Norge AS\\Documents": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.myget.org/F/eto/api/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj": {
-              "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj"
+            "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj": {
+              "projectPath": "C:\\Users\\Magnar\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj"
             }
           }
         }

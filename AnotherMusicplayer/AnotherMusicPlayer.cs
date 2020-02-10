@@ -39,6 +39,13 @@ namespace AnotherMusicPlayer
         }
     }
 
+    public enum PlayState
+    {
+        Playing,
+        Paused,
+        Stopped
+    }
+
     public class AnotherMusicPlayer
     {
         private DecoderLoader DecoderLoader { get; }
@@ -46,8 +53,21 @@ namespace AnotherMusicPlayer
         public bool RepeatSong { get; set; }
         private int CurrentSongIndex { get; set; }
         public Playback CurrentSong { get; set; }
-        public bool ExitRequested { get; set; }
+        public PlayState State { get; private set; }
 
+        public float Volume
+        {
+            get
+            {
+                return CurrentSong.Volume;
+            }
+            set
+            {
+                if (value > 1.0f) value = 1.0f;
+                else if (value < 0.0f) value = 0.0f;
+                if(CurrentSong != null) CurrentSong.Volume = value;
+            }
+        }
         public AnotherMusicPlayer(string path)
         {
             try
@@ -57,17 +77,14 @@ namespace AnotherMusicPlayer
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
                 Environment.Exit(1);
             }
             Library = new List<LibraryEntry>();
-            ExitRequested = false;
+            State = PlayState.Stopped;
         }
-
 
         public bool LoadSong(string path)
         {
-            Console.Clear();
             string name = path?.Substring(0, path.Length - 4);
             Library.Add(new LibraryEntry { Name = name, Path = path});
             return true;
@@ -77,6 +94,12 @@ namespace AnotherMusicPlayer
         {
             CurrentSong?.Stop();
             CurrentSong = null;
+            State = PlayState.Stopped;
+        }
+        public void Pause()
+        {
+            CurrentSong?.Pause();
+            State = PlayState.Paused;
         }
         public void Resume()
         {
@@ -84,13 +107,31 @@ namespace AnotherMusicPlayer
                 Play();
             else
                 CurrentSong?.Play();
+            State = PlayState.Playing;
+
         }
         public void Play()
         {
             CurrentSong?.Stop();
             CurrentSong = new Playback(Library[CurrentSongIndex].Path, DecoderLoader);
+            CurrentSong.PlaybackStopped += CurrentSong_PlaybackStopped;
             CurrentSong.Play();
+            State = PlayState.Playing;
         }
+        public void Play(string path)
+        {
+            CurrentSong?.Stop();
+            CurrentSong = new Playback(path, DecoderLoader);
+            CurrentSong.PlaybackStopped += CurrentSong_PlaybackStopped;
+            CurrentSong.Play();
+            State = PlayState.Playing;
+        }
+
+        private void CurrentSong_PlaybackStopped(object sender, EventArgs e)
+        {
+            NextSong();
+        }
+
         public void Play(int songIndex)
         {
             CurrentSong?.Stop();
@@ -98,8 +139,8 @@ namespace AnotherMusicPlayer
             CurrentSong = new Playback(Library[songIndex].Path, DecoderLoader);
             CurrentSongIndex = songIndex;
             CurrentSong.Play();
+            State = PlayState.Playing;
         }
-
         public void NextSong()
         {
             CurrentSong?.Stop();
@@ -108,16 +149,5 @@ namespace AnotherMusicPlayer
             CurrentSong.Play();
         }
 
-        public void DisplaySongInfo()
-        {
-            if(CurrentSong != null && CurrentSong.State == PlaybackState.Playing)
-            {
-                Console.CursorTop = 0;
-                Console.Write(new string(' ', 10));
-                Console.CursorLeft = 20;
-                var time = CurrentSong.Time;
-                Console.Write(time.ToString("m\\:ss", CultureInfo.InvariantCulture));
-            }
-        }
     }
 }

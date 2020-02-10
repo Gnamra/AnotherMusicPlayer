@@ -1,5 +1,4 @@
 C:\Users\Magnar\Source\Repos\AnotherMusicPlayer\WaveDecoder\obj\Debug\netcoreapp2.2\WaveDecoder.csprojAssemblyReference.cache
-C:\Users\Magnar\Source\Repos\AnotherMusicPlayer\WaveDecoder\obj\Debug\netcoreapp2.2\WaveDecoder.csproj.CoreCompileInputs.cache
 C:\Users\Magnar\Source\Repos\AnotherMusicPlayer\WaveDecoder\obj\Debug\netcoreapp2.2\WaveDecoder.AssemblyInfoInputs.cache
 C:\Users\Magnar\Source\Repos\AnotherMusicPlayer\WaveDecoder\obj\Debug\netcoreapp2.2\WaveDecoder.AssemblyInfo.cs
 C:\Users\Magnar\Source\Repos\AnotherMusicPlayer\WaveDecoder\bin\Debug\netcoreapp2.2\WaveDecoder.deps.json
