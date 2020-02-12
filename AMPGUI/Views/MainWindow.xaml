@@ -1,0 +1,16 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AMPGUI.ViewModels;assembly=AMPGUI"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:AMPGUI.Views"
+        x:Class="AMPGUI.Views.MainWindow"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Another Music Player"
+        >
+  <DockPanel>
+    <ContentControl DockPanel.Dock="Bottom" Content="{Binding MediaController}"></ContentControl>
+    <ContentControl DockPanel.Dock="Top" Content="{Binding Library}"></ContentControl>
+  </DockPanel>
+</Window>

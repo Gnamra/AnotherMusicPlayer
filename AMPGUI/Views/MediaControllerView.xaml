@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="25"
+             x:Class="AMPGUI.Views.MediaControllerView">
+  <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+    <Button Command="{Binding Play}">Play</Button>
+    <Button Command="{Binding Stop}">Stop</Button>
+    <Button Command="{Binding Previous}">Previous</Button>
+    <Button Command="{Binding Next}">Next</Button>
+    <Slider Maximum="100" Minimum="0" Value="{Binding Volume}" MinWidth="100"></Slider>
+    <ProgressBar Minimum="0" Maximum="{Binding SongLength, Mode=TwoWay}" Value="{Binding SongProgress, Mode=TwoWay}"></ProgressBar>
+  </DockPanel>
+</UserControl>
