@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OggDecoder", "OggDecoder\Og
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MP3Decoder", "Mp3Decoder\MP3Decoder.csproj", "{5E0A0CBF-13BF-4330-A2DE-CA18F8DC9221}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlacDecoder", "FlacDecoder\FlacDecoder.csproj", "{B1D81ACD-1367-4DA5-AE07-83EC52C83DC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlacDecoder", "FlacDecoder\FlacDecoder.csproj", "{B1D81ACD-1367-4DA5-AE07-83EC52C83DC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMPGUI", "AMPGUI\AMPGUI.csproj", "{478A94B5-08A9-4D73-A21A-BA07599499D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{B1D81ACD-1367-4DA5-AE07-83EC52C83DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1D81ACD-1367-4DA5-AE07-83EC52C83DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1D81ACD-1367-4DA5-AE07-83EC52C83DC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{478A94B5-08A9-4D73-A21A-BA07599499D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{478A94B5-08A9-4D73-A21A-BA07599499D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{478A94B5-08A9-4D73-A21A-BA07599499D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{478A94B5-08A9-4D73-A21A-BA07599499D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

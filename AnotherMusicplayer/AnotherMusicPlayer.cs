@@ -77,6 +77,7 @@ namespace AnotherMusicPlayer
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 Environment.Exit(1);
             }
             Library = new List<LibraryEntry>();
