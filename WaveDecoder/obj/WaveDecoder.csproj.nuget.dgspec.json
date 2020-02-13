@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\WaveDecoder\\WaveDecoder.csproj": {}
+    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\WaveDecoder\\WaveDecoder.csproj": {}
   },
   "projects": {
-    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj": {
+    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj",
+        "projectUniqueName": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj",
         "projectName": "PluginContracts",
-        "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj",
+        "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj",
         "packagesPath": "C:\\Users\\magnar.kleppe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\obj\\",
+        "outputPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -67,14 +67,14 @@
         }
       }
     },
-    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\WaveDecoder\\WaveDecoder.csproj": {
+    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\WaveDecoder\\WaveDecoder.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\WaveDecoder\\WaveDecoder.csproj",
+        "projectUniqueName": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\WaveDecoder\\WaveDecoder.csproj",
         "projectName": "WaveDecoder",
-        "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\WaveDecoder\\WaveDecoder.csproj",
+        "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\WaveDecoder\\WaveDecoder.csproj",
         "packagesPath": "C:\\Users\\magnar.kleppe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\WaveDecoder\\obj\\",
+        "outputPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\WaveDecoder\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -94,8 +94,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj": {
-                "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj"
+              "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj": {
+                "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj"
               }
             }
           }

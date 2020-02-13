@@ -19,7 +19,7 @@ namespace WaveDecoder
 
         public override WaveFormat WaveFormat { get; }
 
-        public override long Length { get; }
+        public override long Length { get { return AudioFile.Data.Data.Length; } }
 
         public override long Position { get; set; }
 
@@ -28,7 +28,6 @@ namespace WaveDecoder
             CurrentChunkId = "";
             CurrentChunkSize = 0;
             AudioFile = new WaveAudioDataFormat();
-
             try
             {
                 using (AudioFileReader = new BinaryReader(File.OpenRead(file)))
@@ -47,7 +46,6 @@ namespace WaveDecoder
             }
 
             WaveFormat = new WaveFormat(AudioFile.Format.SampleRate, AudioFile.Format.NumChannels);
-
         }
 
         private void NextChunk()

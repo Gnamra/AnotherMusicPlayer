@@ -142,12 +142,13 @@ namespace AnotherMusicPlayer
             CurrentSong.Play();
             State = PlayState.Playing;
         }
-        public void NextSong()
+        public Playback NextSong()
         {
             CurrentSong?.Stop();
             CurrentSongIndex = CurrentSongIndex == Library.Count-1 ? 0 : ++CurrentSongIndex;
             CurrentSong = new Playback(Library[CurrentSongIndex].Path, DecoderLoader);
             CurrentSong.Play();
+            return CurrentSong;
         }
 
     }

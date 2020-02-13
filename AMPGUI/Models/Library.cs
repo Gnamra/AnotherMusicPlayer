@@ -9,6 +9,5 @@ namespace AMPGUI.Models
     /// </summary>
     public class Library
     {
-        List<string> Path;
     }
 }

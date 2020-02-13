@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using AMPGUI.Decoders.Wave;
 using NAudio.Wave;
 using PluginContracts;
 
@@ -29,6 +30,7 @@ namespace AMPGUI.Models
             switch(filetype)
             {
                 case "WAV":
+                    //return new WaveDecoder(file);
                     return CreateWaveDecoder(file);
                 case "MP3":
                     Mp3FileReader fr = new Mp3FileReader(file);

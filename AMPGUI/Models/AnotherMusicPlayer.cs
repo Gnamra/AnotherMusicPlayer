@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AMPGUI.Models
 {
@@ -91,9 +92,10 @@ namespace AMPGUI.Models
 
         public void Stop()
         {
+            Console.WriteLine("Song stopped!");
+            State = PlayState.Stopped;
             CurrentSong?.Stop();
             CurrentSong = null;
-            State = PlayState.Stopped;
         }
         public void Pause()
         {
@@ -111,16 +113,30 @@ namespace AMPGUI.Models
         }
         public Playback Play()
         {
-            CurrentSong?.Stop();
+            Stop();
             CurrentSong = new Playback(Library[CurrentSongIndex].Path, DecoderLoader);
             CurrentSong.PlaybackStopped += CurrentSong_PlaybackStopped;
             CurrentSong.Play();
             State = PlayState.Playing;
             return CurrentSong;
         }
+
+        public async Task<Playback> PlayAsync()
+        {
+            Stop();
+            CurrentSong = await Task.Run(() =>
+            {
+                return new Playback(Library[CurrentSongIndex].Path, DecoderLoader);
+            });
+            CurrentSong.PlaybackStopped += CurrentSong_PlaybackStopped;
+            CurrentSong.Play();
+            State = PlayState.Playing;
+            return CurrentSong;
+        }
+
         public void Play(string path)
         {
-            CurrentSong?.Stop();
+            Stop();
             CurrentSong = new Playback(path, DecoderLoader);
             CurrentSong.PlaybackStopped += CurrentSong_PlaybackStopped;
             CurrentSong.Play();
@@ -129,24 +145,22 @@ namespace AMPGUI.Models
 
         private void CurrentSong_PlaybackStopped(object sender, EventArgs e)
         {
-            NextSong();
+            if(State != PlayState.Stopped)
+                NextSong();
         }
 
         public void Play(int songIndex)
         {
-            CurrentSong?.Stop();
             if (songIndex < 0 || songIndex > Library.Count) throw new Exception("Invalid song index");
-            CurrentSong = new Playback(Library[songIndex].Path, DecoderLoader);
             CurrentSongIndex = songIndex;
-            CurrentSong.Play();
-            State = PlayState.Playing;
+            Stop();
+            Play();
         }
-        public void NextSong()
+        public Playback NextSong()
         {
-            CurrentSong?.Stop();
+            Stop();
             CurrentSongIndex = CurrentSongIndex == Library.Count-1 ? 0 : ++CurrentSongIndex;
-            CurrentSong = new Playback(Library[CurrentSongIndex].Path, DecoderLoader);
-            CurrentSong.Play();
+            return Play();
         }
 
     }
