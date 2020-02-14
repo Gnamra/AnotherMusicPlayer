@@ -8,7 +8,7 @@ namespace WaveDecoder
     /// <summary>
     /// Decodes and provides information about Wave files
     /// </summary>
-    class WaveDecoder : WaveStream, IDecoder
+    class WaveDecoder : WaveStream, IDecoder, IDisposable
     {
         private readonly string readLock = "";
         private BinaryReader AudioFileReader { get; set; }
@@ -47,7 +47,6 @@ namespace WaveDecoder
 
             WaveFormat = new WaveFormat(AudioFile.Format.SampleRate, AudioFile.Format.NumChannels);
         }
-
         private void NextChunk()
         {
             // Add check to see if at the start of a chunk or not
@@ -78,7 +77,6 @@ namespace WaveDecoder
 
             return data;
         }
-
         private WaveAudioDataFormat.FormatChunk ExctractFormatData()
         {
             while (!CurrentChunkId.Equals("fmt ")) { NextChunk(); };
@@ -106,7 +104,6 @@ namespace WaveDecoder
 
             return data;
         }
-
         private WaveAudioDataFormat.DataChunk ExtractAudioData()
         {
             CurrentChunkStart = (int)AudioFileReader.BaseStream.Position;

@@ -917,11 +917,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj",
+      "projectUniqueName": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj",
       "projectName": "AnotherMusicPlayer",
-      "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj",
+      "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\AnotherMusicplayer\\AnotherMusicPlayer.csproj",
       "packagesPath": "C:\\Users\\magnar.kleppe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\AnotherMusicplayer\\obj\\",
+      "outputPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\AnotherMusicplayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -941,8 +941,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj": {
-              "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj"
+            "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj": {
+              "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj"
             }
           }
         }

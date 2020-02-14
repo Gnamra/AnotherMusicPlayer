@@ -55,8 +55,10 @@ namespace AnotherMusicPlayer
             WaveOut.Init(WaveStream);
             WaveOut.PlaybackStopped += WaveOut_PlaybackStopped;
 
-            TimeTracker = new Timer(1000);
-            TimeTracker.AutoReset = true;
+            TimeTracker = new Timer(1000)
+            {
+                AutoReset = true
+            };
             TimeTracker.Elapsed += TimeTracker_Elapsed;
         }
 

@@ -94,7 +94,9 @@ namespace AMPGUI.Models
         {
             Console.WriteLine("Song stopped!");
             State = PlayState.Stopped;
+            if (CurrentSong != null) CurrentSong.PlaybackStopped -= CurrentSong_PlaybackStopped;
             CurrentSong?.Stop();
+            CurrentSong?.Dispose();
             CurrentSong = null;
         }
         public void Pause()
@@ -142,26 +144,26 @@ namespace AMPGUI.Models
             CurrentSong.Play();
             State = PlayState.Playing;
         }
-
-        private void CurrentSong_PlaybackStopped(object sender, EventArgs e)
-        {
-            if(State != PlayState.Stopped)
-                NextSong();
-        }
-
         public void Play(int songIndex)
         {
             if (songIndex < 0 || songIndex > Library.Count) throw new Exception("Invalid song index");
             CurrentSongIndex = songIndex;
-            Stop();
             Play();
         }
         public Playback NextSong()
         {
-            Stop();
             CurrentSongIndex = CurrentSongIndex == Library.Count-1 ? 0 : ++CurrentSongIndex;
             return Play();
         }
+
+        #region Eventhandlers
+        private void CurrentSong_PlaybackStopped(object sender, EventArgs e)
+        {
+            if (State != PlayState.Stopped)
+                NextSong();
+        }
+        #endregion
+
 
     }
 }

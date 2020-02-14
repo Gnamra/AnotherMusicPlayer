@@ -19,7 +19,6 @@ namespace AMPGUI.ViewModels
         public ReactiveCommand<Unit, Playback> Next { get; }
         public ReactiveCommand<Unit, Playback> Previous { get; }
 
-        private int songLength;
         public int Volume
         {
             get => volume;
@@ -29,11 +28,11 @@ namespace AMPGUI.ViewModels
                 Player.Volume = volume/100.0f;
             }
         }
+        public double SongLength { get => songLength; set => this.RaiseAndSetIfChanged(ref songLength, value, "SongLength"); }
+        public double SongProgress { get => songProgress; set => this.RaiseAndSetIfChanged(ref songProgress, value, "SongProgress"); }
 
-        public int SongLength { get => songLength; set => this.RaiseAndSetIfChanged(ref songLength, value, "SongLength"); }
-        public int SongProgress { get => songProgress; set => this.RaiseAndSetIfChanged(ref songProgress, value, "SongProgress"); }
-
-        private int songProgress;
+        private double songProgress;
+        private double songLength;
         private int volume;
 
         private Playback currentSong;
@@ -53,10 +52,17 @@ namespace AMPGUI.ViewModels
             {
                 if (model != null)
                 {
+                    if (currentSong != null)
+                    {
+                        currentSong.Stop();
+                        currentSong.Elapsed -= CurrentSong_Elapsed;
+                        currentSong.PlaybackStopped -= CurrentSong_PlaybackStopped;
+                    }
                     currentSong = model;
                     currentSong.Elapsed += CurrentSong_Elapsed;
                     currentSong.PlaybackStopped += CurrentSong_PlaybackStopped;
-                    SongLength = (currentSong.TotalTime.Minutes * 60) + currentSong.TotalTime.Seconds;
+                    SongLength = (currentSong.TotalTime.Minutes * 60000) + currentSong.TotalTime.Seconds * 1000 + currentSong.TotalTime.Milliseconds;
+
                 }
             });
         }
@@ -69,8 +75,7 @@ namespace AMPGUI.ViewModels
 
         private void CurrentSong_Elapsed(object sender, EventArgs e)
         {
-            SongLength = (currentSong.TotalTime.Minutes * 60) + currentSong.TotalTime.Seconds;
-            SongProgress = (currentSong.Time.Minutes * 60) + currentSong.Time.Seconds;
+            SongProgress = (currentSong.Time.Minutes * 60000) + currentSong.Time.Seconds * 1000 + currentSong.Time.Milliseconds;
         }
     }
 }

@@ -10,6 +10,6 @@
     <Button Command="{Binding Previous}">Previous</Button>
     <Button Command="{Binding Next}">Next</Button>
     <Slider Maximum="100" Minimum="0" Value="{Binding Volume}" MinWidth="100"></Slider>
-    <ProgressBar Minimum="0" Maximum="{Binding SongLength, Mode=TwoWay}" Value="{Binding SongProgress, Mode=TwoWay}"></ProgressBar>
+    <ProgressBar Minimum="0" Maximum="{Binding SongLength}" Value="{Binding SongProgress}"></ProgressBar>
   </DockPanel>
 </UserControl>

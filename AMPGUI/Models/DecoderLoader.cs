@@ -5,6 +5,7 @@ using System.Reflection;
 using AMPGUI.Decoders.Wave;
 using NAudio.Wave;
 using PluginContracts;
+using NAudio;
 
 
 namespace AMPGUI.Models
@@ -34,7 +35,7 @@ namespace AMPGUI.Models
                     return CreateWaveDecoder(file);
                 case "MP3":
                     Mp3FileReader fr = new Mp3FileReader(file);
-                    return (IDecoder)fr;
+                    return (IDecoder)fr;                    
                 default:
                     throw new Exception("Decoder not found!");
             }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj": {}
+    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj": {}
   },
   "projects": {
-    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj": {
+    "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj",
+        "projectUniqueName": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj",
         "projectName": "PluginContracts",
-        "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\PluginContracts.csproj",
+        "projectPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\PluginContracts.csproj",
         "packagesPath": "C:\\Users\\magnar.kleppe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicplayer\\PluginContracts\\obj\\",
+        "outputPath": "C:\\Users\\magnar.kleppe\\source\\repos\\AnotherMusicPlayer\\PluginContracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -10,7 +10,7 @@ namespace AMPGUI.Models
     /// <summary>
     /// Represents a playback. You can play, pause, stop and seek through a playback.
     /// </summary>
-    public class Playback
+    public class Playback : IDisposable
     {
         /// <summary>
         /// Current time of playback
@@ -21,9 +21,11 @@ namespace AMPGUI.Models
         /// Length of the audio file
         /// </summary>
         public TimeSpan TotalTime { get { return WaveStream.TotalTime; } }
-
+        /// <summary>
+        /// Timer that updates once a second.
+        /// Can be used to track the progress of the song.
+        /// </summary>
         public Timer TimeTracker { get;  }
-
         public long Position
         {
             get { return Decoder.GetWaveStream().Position; }
@@ -34,7 +36,6 @@ namespace AMPGUI.Models
             get { return WaveOut.Volume; }
             set { WaveOut.Volume = value; }
         }
-
         public PlaybackState State { get { return WaveOut.PlaybackState; } }
         private IDecoder Decoder { get; }
         private WaveStream WaveStream { get; }
@@ -51,11 +52,11 @@ namespace AMPGUI.Models
 
             Decoder = dl?.GetDecoder(pathToSong);
             WaveStream = Decoder.GetWaveStream();
-            WaveOut = new WaveOutEvent { NumberOfBuffers = 2 };
+            WaveOut = new WaveOutEvent { NumberOfBuffers = 2};
             WaveOut.Init(WaveStream);
             WaveOut.PlaybackStopped += WaveOut_PlaybackStopped;
 
-            TimeTracker = new Timer(1000)
+            TimeTracker = new Timer(200)
             {
                 AutoReset = true
             };
@@ -63,23 +64,9 @@ namespace AMPGUI.Models
 
         }
 
-        private void TimeTracker_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            Elapsed?.Invoke(sender, e);
-        }
-
-        private void WaveOut_PlaybackStopped(object sender, StoppedEventArgs e)
-        {
-            PlaybackStopped?.Invoke(sender, e);
-        }
-
         public void Stop()
         {
-            TimeTracker.Stop();
-            WaveOut.Stop();
-            WaveOut.Dispose();
-            WaveStream.Dispose();
-            TimeTracker.Dispose();
+            Dispose();
         }
         public void Play()
         {
@@ -106,6 +93,34 @@ namespace AMPGUI.Models
             {
                 Console.WriteLine(e.Message);
             }
-        } 
+        }
+
+        public void Dispose()
+        {
+            TimeTracker.Elapsed -= TimeTracker_Elapsed;
+            TimeTracker.Stop();
+
+            WaveOut.PlaybackStopped -= WaveOut_PlaybackStopped;
+            WaveOut.Stop();
+            
+            TimeTracker.Dispose();
+            WaveOut.Dispose();
+            WaveStream.Dispose();
+        }
+
+        #region EventHandler methods
+        private void TimeTracker_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Elapsed?.Invoke(sender, e);
+        }
+
+        // Expose the playback stopped event.
+        private void WaveOut_PlaybackStopped(object sender, StoppedEventArgs e)
+        {
+            PlaybackStopped?.Invoke(sender, e);
+            Dispose();
+        }
+        #endregion
+
     }
 }
